@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retailer Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+    .container {
+        background-color: rgba(93, 103, 160, 0.562);
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+</style>
+<body>
+    <div class="container border border-info mt-3">
+        <h2 class="text-center my-4 p-2">Retailer Page</h2>
+        <div class="mb-3">
+            <label for="retailerName" class="form-label">Retailer Name</label>
+            <input type="text" class="form-control" id="retailerName" placeholder="Enter retailer name">
+        </div>
+        <div class="mb-3">
+            <label for="location" class="form-label">Location</label>
+            <input type="text" class="form-control" id="location" placeholder="Enter location">
+        </div>
+        <div class="mb-3">
+            <label for="contact" class="form-label">Contact Number</label>
+            <input type="tel" class="form-control" id="contact" placeholder="Enter contact number">
+        </div>
+        <button class="btn btn-primary" onclick="addRetailer()">Add Retailer</button>
+
+        <h3 class="mt-4">Retailer List</h3>
+        <ul id="retailerList" class="list-group"></ul>
+    </div>
+
+    <script>
+        function addRetailer() {
+            const name = document.getElementById('retailerName').value;
+            const location = document.getElementById('location').value;
+            const contact = document.getElementById('contact').value;
+
+            if (!name || !location || !contact) {
+                alert('Please fill all fields');
+                return;
+            }
+
+            const list = document.getElementById('retailerList');
+            const li = document.createElement('li');
+            li.className = 'list-group-item';
+            li.innerHTML = `<strong>Name:</strong> ${name} <br> <strong>Location:</strong> ${location} <br> <strong>Contact:</strong> ${contact}`;
+            list.appendChild(li);
+
+            // Clear the input fields
+            document.getElementById('retailerName').value = '';
+            document.getElementById('location').value = '';
+            document.getElementById('contact').value = '';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+    .container {
+        background-color: rgba(93, 103, 160, 0.562);
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+</style>
+<body>
+    <div class="container mt-2">
+        <h2 class="text-center mt-4 p-4">Purchase Page</h2>
+        <div class="mb-3">
+            <label for="productName" class="form-label">Product Name</label>
+            <input type="text" class="form-control" id="productName" placeholder="Enter product name">
+        </div>
+        <div class="mb-3">
+            <label for="quantity" class="form-label">Quantity</label>
+            <input type="number" class="form-control" id="quantity" placeholder="Enter quantity">
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input type="number" class="form-control" id="price" placeholder="Enter price per unit">
+        </div>
+        <div class="mb-3">
+            <label for="retailer" class="form-label">Retailer</label>
+            <input type="text" class="form-control" id="retailer" placeholder="Enter retailer">
+        </div>
+        <button class="btn btn-primary" onclick="addPurchase()">Add Purchase</button>
+        <div class="p-3">
+        <h3 class="mt-2">Purchase List</h3>
+        <ul id="purchaseList" class="list-group"></ul>
+        </div>
+    </div>
+
+    <script>
+        function addPurchase() {
+            const productName = document.getElementById('productName').value;
+            const quantity = document.getElementById('quantity').value;
+            const price = document.getElementById('price').value;
+            const retailer = document.getElementById('retailer').value;
+
+            if (!productName || !quantity || !price || !retailer) {
+                alert('Please fill all fields');
+                return;
+            }
+
+            const totalCost = quantity * price;
+            const list = document.getElementById('purchaseList');
+            const li = document.createElement('li');
+            li.className = 'list-group-item';
+            li.innerHTML = `<strong>Product:</strong> ${productName} <br> <strong>Quantity:</strong> ${quantity} <br> <strong>Price:</strong> $${price} <br> <strong>Total:</strong> $${totalCost} <br> <strong>Retailer:</strong> ${retailer}`;
+            list.appendChild(li);
+
+            // Clear the input fields
+            document.getElementById('productName').value = '';
+            document.getElementById('quantity').value = '';
+            document.getElementById('price').value = '';
+            document.getElementById('retailer').value = '';
+        }
+    </script>
+</body>
+</html>
